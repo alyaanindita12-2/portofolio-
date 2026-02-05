@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Alya Anindita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
+    }
+    
+    .skill-bar {
+      background: linear-gradient(90deg, #ec4899, #f472b6);
+      border-radius: 9999px;
+      height: 8px;
+      transition: width 1s ease;
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .photo-upload-area {
+      border: 3px dashed #f9a8d4;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .photo-upload-area:hover {
+      border-color: #ec4899;
+      background: rgba(236, 72, 153, 0.05);
+    }
+    
+    .photo-container {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #f9a8d4;
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+    }
+    
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ec4899;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #ec4899, #f472b6);
+      border-radius: 2px;
+    }
+    
+    .portfolio-card {
+      overflow: hidden;
+    }
+    
+    .portfolio-card img {
+      transition: transform 0.5s ease;
+    }
+    
+    .portfolio-card:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div id="app-wrapper" class="h-full overflow-auto gradient-bg">
+    
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card">
+      <nav class="max-w-6xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="#home" class="flex items-center gap-2">
+            <span class="text-2xl">🌸</span>
+            <span class="font-display text-xl font-semibold text-pink-600">Alya</span>
+          </a>
+          
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#home" class="nav-link text-gray-700 hover:text-pink-600 font-medium">Home</a>
+            <a href="#about" class="nav-link text-gray-700 hover:text-pink-600 font-medium">About</a>
+            <a href="#skills" class="nav-link text-gray-700 hover:text-pink-600 font-medium">Skills</a>
+            <a href="#portfolio" class="nav-link text-gray-700 hover:text-pink-600 font-medium">Portfolio</a>
+            <a href="#contact" class="nav-link text-gray-700 hover:text-pink-600 font-medium">Contact</a>
+          </div>
+          
+          <button id="mobile-menu-btn" class="md:hidden text-pink-600 text-2xl">☰</button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-pink-200 pt-4">
+          <div class="flex flex-col gap-4">
+            <a href="#home" class="text-gray-700 hover:text-pink-600 font-medium">Home</a>
+            <a href="#about" class="text-gray-700 hover:text-pink-600 font-medium">About</a>
+            <a href="#skills" class="text-gray-700 hover:text-pink-600 font-medium">Skills</a>
+            <a href="#portfolio" class="text-gray-700 hover:text-pink-600 font-medium">Portfolio</a>
+            <a href="#contact" class="text-gray-700 hover:text-pink-600 font-medium">Contact</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          
+          <!-- Photo Upload Area -->
+          <div class="animate-float">
+            <div id="photo-area" class="photo-container flex items-center justify-center bg-white">
+              <div id="upload-placeholder" class="text-center p-4">
+                <div class="text-4xl mb-2">📷</div>
+                <p class="text-pink-400 text-sm">Klik untuk upload foto</p>
+              </div>
+              <img id="profile-photo" class="hidden" alt="Foto Alya Anindita" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#fce7f3'; this.alt='Foto tidak tersedia';">
+            </div>
+            <input type="file" id="photo-input" accept="image/*" class="hidden">
+          </div>
+          
+          <!-- Hero Content -->
+          <div class="text-center lg:text-left animate-fade-in">
+            <p class="text-pink-500 font-medium mb-2">✨ Selamat Datang</p>
+            <h1 id="hero-name" class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
+              Alya Anindita
+            </h1>
+            <p id="hero-tagline" class="text-xl md:text-2xl text-pink-600 font-medium mb-6">
+              Mampu Mengatur Uang dan Waktu 💖
+            </p>
+            <p id="hero-greeting" class="text-gray-600 text-lg mb-8 max-w-lg">
+              Hallo nama saya Alya, bisa dipanggil Ay. Selamat datang di web saya, salam kenal! 🌷
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="#portfolio" class="px-8 py-3 bg-pink-500 text-white rounded-full font-semibold hover:bg-pink-600 transition-all hover:shadow-lg hover:shadow-pink-300">
+                Lihat Portfolio 🎨
+              </a>
+              <a href="#contact" class="px-8 py-3 border-2 border-pink-500 text-pink-500 rounded-full font-semibold hover:bg-pink-50 transition-all">
+                Hubungi Saya 💌
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-gray-800 mb-16 section-title">
+          Tentang Saya
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="glass-card rounded-2xl p-8 hover-lift text-center">
+            <div class="text-4xl mb-4">🌸</div>
+            <h3 class="font-display text-xl font-semibold text-gray-800 mb-3">Latar Belakang</h3>
+            <p id="about-background" class="text-gray-600">
+              Saya anak tunggal di keluarga saya
+            </p>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-8 hover-lift text-center">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="font-display text-xl font-semibold text-gray-800 mb-3">Minat & Tujuan</h3>
+            <p id="about-goal" class="text-gray-600">
+              Saya ingin menjadi orang yang lebih baik lagi setiap harinya
+            </p>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-8 hover-lift text-center">
+            <div class="text-4xl mb-4">💪</div>
+            <h3 class="font-display text-xl font-semibold text-gray-800 mb-3">Keunggulan</h3>
+            <p id="about-value" class="text-gray-600">
+              Bisa mandiri
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-gray-800 mb-16 section-title">
+          Keahlian
+        </h2>
+        
+        <div class="glass-card rounded-2xl p-8">
+          <h3 class="font-display text-xl font-semibold text-gray-800 mb-8 text-center">Soft Skills</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-700 font-medium">💬 Komunikasi</span>
+                <span class="text-pink-500 font-semibold">90%</span>
+              </div>
+              <div class="bg-pink-100 rounded-full h-3">
+                <div class="skill-bar" style="width: 90%;"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-700 font-medium">🤝 Kerja Tim</span>
+                <span class="text-pink-500 font-semibold">85%</span>
+              </div>
+              <div class="bg-pink-100 rounded-full h-3">
+                <div class="skill-bar" style="width: 85%;"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-700 font-medium">🎨 Kreativitas</span>
+                <span class="text-pink-500 font-semibold">88%</span>
+              </div>
+              <div class="bg-pink-100 rounded-full h-3">
+                <div class="skill-bar" style="width: 88%;"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-700 font-medium">⏰ Manajemen Waktu</span>
+                <span class="text-pink-500 font-semibold">92%</span>
+              </div>
+              <div class="bg-pink-100 rounded-full h-3">
+                <div class="skill-bar" style="width: 92%;"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-700 font-medium">💰 Manajemen Keuangan</span>
+                <span class="text-pink-500 font-semibold">95%</span>
+              </div>
+              <div class="bg-pink-100 rounded-full h-3">
+                <div class="skill-bar" style="width: 95%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-gray-800 mb-16 section-title">
+          Portfolio
+        </h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Portfolio Card 1 -->
+          <div class="portfolio-card glass-card rounded-2xl overflow-hidden hover-lift">
+            <div class="h-48 bg-gradient-to-br from-pink-200 to-pink-300 flex items-center justify-center">
+              <span class="text-6xl">📊</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-lg font-semibold text-gray-800 mb-2">Proyek Manajemen Keuangan</h3>
+              <p class="text-gray-600 text-sm mb-4">Perencanaan dan pengelolaan keuangan pribadi dengan sistem budgeting yang efektif.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Keuangan</span>
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Planning</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Portfolio Card 2 -->
+          <div class="portfolio-card glass-card rounded-2xl overflow-hidden hover-lift">
+            <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center">
+              <span class="text-6xl">📅</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-lg font-semibold text-gray-800 mb-2">Sistem Manajemen Waktu</h3>
+              <p class="text-gray-600 text-sm mb-4">Pengembangan jadwal harian dan mingguan untuk produktivitas maksimal.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Produktivitas</span>
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Organisasi</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Portfolio Card 3 -->
+          <div class="portfolio-card glass-card rounded-2xl overflow-hidden hover-lift">
+            <div class="h-48 bg-gradient-to-br from-rose-200 to-pink-300 flex items-center justify-center">
+              <span class="text-6xl">🎨</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-lg font-semibold text-gray-800 mb-2">Proyek Kreatif</h3>
+              <p class="text-gray-600 text-sm mb-4">Berbagai karya kreatif dan desain yang menunjukkan kemampuan artistik.</p>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Kreatif</span>
+                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs">Desain</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Add Portfolio Button -->
+        <div class="mt-12 text-center">
+          <button id="add-portfolio-btn" class="px-6 py-3 border-2 border-dashed border-pink-400 text-pink-500 rounded-xl font-medium hover:bg-pink-50 transition-all">
+            ➕ Tambah Portfolio Baru
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-gray-800 mb-16 section-title">
+          Pengalaman & Prestasi
+        </h2>
+        
+        <div class="space-y-6">
+          
